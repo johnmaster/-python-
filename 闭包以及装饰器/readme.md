@@ -9,9 +9,11 @@
         return b
   ```
 在函数a中定义了一个b函数，b函数访问了外部函数a的变量，并且函数返回值为b函数。<br>
-a_1 = a(1)<br>
-print('function:',a_1)<br>
-print('result:',a_1(1))<br>
+```python
+a_1 = a(1)
+print('function:',a_1)
+print('result:',a_1(1))
+  ```
 上述的代码*a_1*是一个函数，上面代码的执行结果<br>
 function: <function a.<locals>.b at 0x000002382A3BAAE8><br>
 result: 2<br>
