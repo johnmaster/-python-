@@ -22,22 +22,28 @@ result: 2<br>
 装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。概括的讲，装饰器的作用就是为
 已经存在的对象增加额外的功能。<br>
 先看一个简单的例子：<br>
-def foo():<br>
-&#8195;print('i am foo ')<br>
+```python
+def foo():
+  print('i am foo ')
+```
 现在有一个新的需求，希望在程序执行的过程中可以打印出来一条信息*foo is running*于是在代码中添加这行语句<br>
-def foo():<br>
-&#8195;print('i am foo')<br>
-&#8195;print("foo is running")<br>
+  ```python
+  def foo():
+      print('i am foo')
+      print("foo is running")
+    ```
 但是此时有很多和函数有这样的需求，这样该怎么做？再写一个print("foo is running")放在foo()以及很多函数中去么？这样就造成了大量雷同的代码，为了减少重复
 写代码，我们可以这样做，重新定义一个函数，专门处理类似print("foo is running")这样的命令。<br>
-def use_logging(func):<br>
-&#8195;print("%s is running " % func.__name__)<br>
-&#8195;func()<br>
-<br>
-def bar():<br>
-&#8195;print('i am bar')<br>
-<br>
-use_logging(bar)<br>
+```python
+def use_logging(func):
+    print("%s is running " % func.__name__)
+    func()
+
+def bar():
+    print('i am bar')
+
+use_logging(bar)
+```
 这种方式从逻辑上不难理解，但是这样的话，我们每次都要将一个函数作为参数传递给*use_logging*函数，而且这种方式已经
 破坏了原有的代码逻辑结构，之间执行业务逻辑时，执行运行bar(),但是现在不得不改成use_logging(bar)。对于这种方式，
 我们可以使用**装饰器**来应对。<br>
