@@ -2,12 +2,12 @@
 1.闭包介绍<br>
 <tab>闭包概念：在一个内部函数中，对外部作用域中的变量进行引用，（并且一般外部函数的返回值为内部函数），那么内部函数就被认为是闭包。
 举一个例子：<br>
-  ```python
+```python
     def a(x):
         def b(y):
             return x+y
         return b
-  ```
+```
 在函数a中定义了一个b函数，b函数访问了外部函数a的变量，并且函数返回值为b函数。<br>
 ```python
 a_1 = a(1)
@@ -31,7 +31,7 @@ def foo():
   def foo():
       print('i am foo')
       print("foo is running")
-    ```
+  ```
 但是此时有很多和函数有这样的需求，这样该怎么做？再写一个print("foo is running")放在foo()以及很多函数中去么？这样就造成了大量雷同的代码，为了减少重复
 写代码，我们可以这样做，重新定义一个函数，专门处理类似print("foo is running")这样的命令。<br>
 ```python
