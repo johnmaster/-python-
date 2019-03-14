@@ -18,6 +18,17 @@ print('result:',a_1(1))
 function: <function a.<locals>.b at 0x000002382A3BAAE8><br>
 result: 2<br>
 从结果我们不难看出，a_1是函数b,而不是函数a，这是因为return回来的是函数b。
+2.闭包可以保存运行环境
+```python
+   _list = []
+   for i in range(3):
+       def func(a):
+           return i+a
+       _list.append(func)
+   
+   for f in _list:
+       print(f(1))
+```
 # 装饰器
 装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。概括的讲，装饰器的作用就是为
 已经存在的对象增加额外的功能。<br>
