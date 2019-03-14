@@ -29,6 +29,21 @@ result: 2<br>
    for f in _list:
        print(f(1))
 ```
+上面的函数输出不是1，2，3，而是3，3，3。<br>
+这是因为在Python中，循环体内定义的函数是无法保存循环执行过程中的不停变化的外部变量的，即普通函数无法保存运行环境！这种事情应该让闭包来做。
+```python
+_list = []
+for i in range(3):
+    def func(i):
+        def f_closure(a):
+            return i+a
+        return f_closure
+    _list.append(func(i))
+
+for i in _list:
+    print(f(1))
+```
+<br>
 # 装饰器
 装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。概括的讲，装饰器的作用就是为
 已经存在的对象增加额外的功能。<br>
