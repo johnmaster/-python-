@@ -48,21 +48,22 @@ use_logging(bar)
 破坏了原有的代码逻辑结构，之间执行业务逻辑时，执行运行bar(),但是现在不得不改成use_logging(bar)。对于这种方式，
 我们可以使用**装饰器**来应对。<br>
 **简单装饰器**<br>
-def use_logging(func):<br>
-&#8195;def wrapper(*args, **kwargs):<br>
-&#8195;&#8195;print("%s is running" % func.__name__)<br>
-&#8195;&#8195;return func(*args, **kwargs)<br>
-&#8195;return wrapper<br>   
-<br>
-def bar():<br>
-&#8195;print("i am bar")<br>
-<br>
-bar = use_logging(bar)<br>
-bar()<br>
-<br>
+```python
+def use_logging(func):
+    def wrapper(*args, **kwargs):
+        print("%s is running" % func.__name__)
+        return func(*args, **kwargs)
+    return wrapper
+
+def bar():
+    print("i am bar")
+
+bar = use_logging(bar)
+bar()
+```
 函数use_logging就是装饰器，它把真正执行业务方法的func包裹再函数里面，看起来像bar被use_logging装饰了。<br>
 @符号是装饰器的语法糖，在定义函数的时候使用，避免再一次赋值操作。<br>
-def use_logging(func):<br>
+def use_logging(func):
 &#8195;def wrapper(*args, **kwargs):<br>
 &#8195;&#8195;print("%s is running" % func.__name__)<br>
 &#8195;&#8195;return func(*args,**kwargs)<br>
