@@ -2,10 +2,12 @@
 1.闭包介绍<br>
 <tab>闭包概念：在一个内部函数中，对外部作用域中的变量进行引用，（并且一般外部函数的返回值为内部函数），那么内部函数就被认为是闭包。
 举一个例子：<br>
-&#8195;def a(x):<br>
-&#8195;&#8195;def b(y):<br>
-&#8195;&#8195;&#8195;return x+y<br>
-&#8195;&#8195;return b<br>
+  ```python
+    def a(x):
+        def b(y):
+            return x+y
+        return b
+  ```
 在函数a中定义了一个b函数，b函数访问了外部函数a的变量，并且函数返回值为b函数。<br>
 a_1 = a(1)<br>
 print('function:',a_1)<br>
@@ -42,7 +44,7 @@ def use_logging(func):<br>
 &#8195;def wrapper(*args, **kwargs):<br>
 &#8195;&#8195;print("%s is running" % func.__name__)<br>
 &#8195;&#8195;return func(*args, **kwargs)<br>
-&#8195;return wrapper<br>
+&#8195;return wrapper<br>   
 <br>
 def bar():<br>
 &#8195;print("i am bar")<br>
