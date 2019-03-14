@@ -102,6 +102,65 @@ def foo(name="foo"):
 
 foo()
 ```
+上面的use_logging是允许带参数的装饰器。它实际上是对原有装饰器的一个函数封装，并返回一个装饰器。
+这个效果相当于 foo = use_logging(level="warn")(foo(name="foo"))<br>
+**类装饰器**<br>
+相比于函数装饰器，类装饰器具有灵活度大，高内聚，封装性等优点。使用类装饰器还可以依靠类内部的\_\_call\_\_方法，
+当使用@形式将装饰器附加到函数上时，就会调用这个方法。<br>
+```python
+class Foo(object):
+    def __init__(self, func):
+        self._func = func
+    def __call__(self):
+        print('class decorator running')
+        self._func()
+        print('class decorator ending')
+
+@Foo
+def bar():
+    print('It is bar')
+
+bar()
+```
+**functools.wraps**<br>
+使用装饰器极大的复用了代码，但是装饰器有一个缺点就是原函数的元信息不见了，函数也是对象，所以函数也有\_\_name\_\_
+等属性，但是你们去看一下经过装饰器装饰后的函数，它们的\_\_name\_\_已经改变了。<br>
+```python
+def logged(func):
+    def with_logging(*agrs, **kwargs):
+        print(func.__name__ + " was called ")
+        return func(*args, **kwargs)
+    return with_logging
+
+@logged
+def f(x):
+    """does some math """
+    print("current the number is %d " % x)
+
+print(f.__name__)
+print(f.__doc__)
+```
+可以看得到f.\_\_name\_\_输出的是with\_logging,f.\_\_doc\_\_什么也没输出。<br>
+为了应对这个问题，我们使用functools.wraps,wraps本身也是一个装饰器，它能把原函数的元信息拷贝到装饰器函数中，这使得
+装饰器函数也有和原函数一样的元信息了。<br>
+```python
+from functools import wraps
+def logged(func):
+    @wraps(func)
+    def with_logging(*agrs, **kwargs):
+        print(func.__name__ + " was called ")
+        return func(*args, **kwargs)
+    return with_logging
+
+@logged
+def f(x):
+    """does some math """
+    print("current the number is %d " % x)
+
+print(f.__name__)
+print(f.__doc__)
+```
+
 
 
 
