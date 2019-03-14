@@ -13,7 +13,7 @@
 a_1 = a(1)
 print('function:',a_1)
 print('result:',a_1(1))
-  ```
+```
 上述的代码*a_1*是一个函数，上面代码的执行结果<br>
 function: <function a.<locals>.b at 0x000002382A3BAAE8><br>
 result: 2<br>
