@@ -45,7 +45,7 @@ def use_logging(func):<br>
 &#8195;return wrapper<br>
 <br>
 def bar():<br>
-&#8195;print("i am bar ")<br>
+&#8195;print("i am bar")<br>
 <br>
 bar = use_logging(bar)<br>
 bar()<br>
@@ -60,11 +60,11 @@ def use_logging(func):<br>
 <br>
 @use_logging<br>
 def bar():<br>
-&#8195;print("i am bar ")<br>
+&#8195;print("i am bar")<br>
 <br>
 @use_logging<br>
 def foo():<br>
-&#8195;print("i am foo ")<br>
+&#8195;print("i am foo")<br>
 <br>
 bar()<br>
 <br>
