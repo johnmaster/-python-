@@ -55,7 +55,7 @@ bar()<br>
 def use_logging(func):<br>
 &#8195;def wrapper(*args, **kwargs):<br>
 &#8195;&#8195;print("%s is running" % func.__name__)<br>
-&#8195;&#8195;return func(*args,kwargs)<br>
+&#8195;&#8195;return func(*args,**kwargs)<br>
 &#8195;return wrapper<br>
 <br>
 @use_logging<br>
@@ -86,7 +86,10 @@ def use_logging(level):<br>
   def foo(name="foo"):<br>
   print("i am %s " % name )<br>
   foo<br>
-
+```python
+  def foo(name="foo"):
+    print("i am %s" % name)
+```
 
 
 
